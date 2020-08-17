@@ -1,5 +1,5 @@
 .env
-build/
+bin/
 src/config.ts
 node_modules/
 
