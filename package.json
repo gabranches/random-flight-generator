@@ -11,6 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
+    "@types/lodash": "^4.14.159",
     "@types/node": "^14.0.27",
     "@types/yargs": "^15.0.5",
     "axios": "^0.19.2",
@@ -19,5 +20,8 @@
   },
   "bin": {
     "bincli": "npm run start"
+  },
+  "dependencies": {
+    "lodash": "^4.17.20"
   }
 }

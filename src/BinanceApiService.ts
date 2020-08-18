@@ -1,6 +1,7 @@
 import config from "./config";
 import crypto from "crypto";
 import axios from "axios";
+import { BalanceRecord } from "./query/BalanceQuery";
 
 export class BinanceApiService {
   public url = "https://api.binance.com";
@@ -35,7 +36,7 @@ export class BinanceApiService {
     return `${this.url}/api/v3/account?${payload}&signature=${signature}`;
   }
 
-  public fetchBalances(): Promise<any> {
+  public fetchBalances(): Promise<BalanceRecord[]> {
     return new Promise(async (resolve, reject) => {
       axios
         .get(this.buildUrl(), {
@@ -52,21 +53,4 @@ export class BinanceApiService {
         });
     });
   }
-
-  // formatBalances(balances) {
-  //   const newBal = [];
-  //   balances = balances.filter(b => {
-  //     return (
-  //       Number(b.free) + Number(b.locked) > 0 &&
-  //       !this.ignoreList.includes(b.asset)
-  //     );
-  //   });
-  //   balances.forEach(item => {
-  //     newBal.push({
-  //       symbol: item.asset,
-  //       balance: Number(item.free) + Number(item.locked),
-  //       id: null,
-  //     });
-  //   });
-  //   return newBal;
 }
