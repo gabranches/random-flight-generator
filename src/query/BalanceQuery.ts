@@ -1,4 +1,4 @@
-import { AbstractQuery as AbstractQuery } from './AbstractQuery';
+import { AbstractQuery } from './AbstractQuery';
 import { BinanceApiService } from '../BinanceApiService';
 import _ from 'lodash';
 
@@ -9,12 +9,8 @@ export interface BalanceRecord {
 }
 
 export class BalanceQuery extends AbstractQuery<BalanceRecord> {
-  // public symbol: string;
-  public tokens: string[];
-
   constructor(args: string[]) {
-    super();
-    this.tokens = args.map((token) => token.toLowerCase());
+    super(args);
   }
 
   public async execute(): Promise<string[]> {
@@ -27,9 +23,9 @@ export class BalanceQuery extends AbstractQuery<BalanceRecord> {
   }
 
   public format(data: BalanceRecord[]): string[] {
-    if (this.tokens.length > 0) {
+    if (this.params.length > 0) {
       data = _.filter(data, (row) => {
-        return this.tokens.includes(row.asset.toLowerCase());
+        return this.params.includes(row.asset.toLowerCase());
       });
     }
     return data.map((row) => this.formatRow(row));
