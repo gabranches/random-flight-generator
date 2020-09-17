@@ -19,7 +19,7 @@ describe('randomAirport', () => {
 });
 
 describe('getAirport', () => {
-	test('return the correct airport', () => {
+	test('returns the correct airport', () => {
 		const airport = AirportUtils.getAirport('MKC');
 		expect(airport.name).toBe('Charles B. Wheeler Downtown Airport');
 	});
