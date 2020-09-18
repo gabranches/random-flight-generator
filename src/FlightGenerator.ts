@@ -53,6 +53,7 @@ export class FlightGenerator {
 					possibleAirports[
 						Math.floor(Math.random() * possibleAirports.length)
 					];
+				this.arrival.randomlyGenerated = true;
 			} else {
 				console.log('No flights found. Trying again.');
 				this.tries++;
@@ -75,6 +76,7 @@ export class FlightGenerator {
 					possibleAirports[
 						Math.floor(Math.random() * possibleAirports.length)
 					];
+				this.departure.randomlyGenerated = true;
 			} else {
 				console.log('No flights found. Trying again.');
 				this.tries++;

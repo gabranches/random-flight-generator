@@ -33,6 +33,7 @@ export class AirportUtils {
 		if (excludeCountries.includes(airport.country)) {
 			return AirportUtils.randomAirport(excludeCountries);
 		} else {
+			airport.randomlyGenerated = true;
 			return airport;
 		}
 	}
