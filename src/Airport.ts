@@ -10,6 +10,7 @@ export class Airport {
 	public state: string = '';
 	public city: string = '';
 	public elevation: number = 0;
+	public randomlyGenerated = false;
 
 	constructor(airport: AirportJson | undefined) {
 		if (airport) {
@@ -22,6 +23,8 @@ export class Airport {
 			this.state = airport.state;
 			this.city = airport.city;
 			this.elevation = airport.elevation;
+		} else {
+			this.randomlyGenerated = true;
 		}
 	}
 }

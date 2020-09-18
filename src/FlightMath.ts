@@ -1,33 +1,41 @@
-export interface Point {
-	lat: number;
-	lon: number;
-}
+import { MapCoordinate } from './MapCoordinate';
 
 export class FlightMath {
 	/**
-	 * Returns the distance in meters between two Points
+	 * Returns the distance in meters between two MapCoordinates
 	 * Source: https://www.movable-type.co.uk/scripts/latlong.html
 	 **/
-	static getDistance(point1: Point, point2: Point) {
-		const lat1 = point1.lat;
-		const lat2 = point2.lat;
-
-		const lon1 = point1.lon;
-		const lon2 = point2.lon;
-
+	static getDistance(start: MapCoordinate, end: MapCoordinate) {
 		const R = 6371e3; // metres
-		const φ1 = (lat1 * Math.PI) / 180; // φ, λ in radians
-		const φ2 = (lat2 * Math.PI) / 180;
-		const Δφ = ((lat2 - lat1) * Math.PI) / 180;
-		const Δλ = ((lon2 - lon1) * Math.PI) / 180;
-
+		const φ1 = (start.lat * Math.PI) / 180; // φ, λ in radians
+		const φ2 = (end.lat * Math.PI) / 180;
+		const Δφ = ((end.lat - start.lat) * Math.PI) / 180;
+		const Δλ = ((end.lon - start.lon) * Math.PI) / 180;
 		const a =
 			Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
 			Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
 		const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
 		const d = R * c; // in metres
 		return d;
+	}
+
+	/**
+	 * Returns the bearing in degrees between two MapCoordinates
+	 * Source: https://www.movable-type.co.uk/scripts/latlong.html
+	 **/
+	static getBearing(start: MapCoordinate, end: MapCoordinate) {
+		const φ1 = (start.lat * Math.PI) / 180; // φ, λ in radians
+		const φ2 = (end.lat * Math.PI) / 180;
+
+		const λ1 = (start.lon * Math.PI) / 180; // φ, λ in radians
+		const λ2 = (end.lon * Math.PI) / 180;
+
+		const y = Math.sin(λ2 - λ1) * Math.cos(φ2);
+		const x =
+			Math.cos(φ1) * Math.sin(φ2) -
+			Math.sin(φ1) * Math.cos(φ2) * Math.cos(λ2 - λ1);
+		const θ = Math.atan2(y, x);
+		return ((θ * 180) / Math.PI + 360) % 360; // in degrees
 	}
 
 	static metersToNauticalMiles(distance: number) {

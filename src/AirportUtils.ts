@@ -25,9 +25,15 @@ const AIRPORTS: Airport[] = _.filter(
 ).map((airport) => new Airport(airport as AirportJson));
 
 export class AirportUtils {
-	static randomAirport(): Airport {
+	static randomAirport(excludeCountries?: string[]): Airport {
+		excludeCountries = excludeCountries || [];
 		const index = Math.floor(Math.random() * AirportUtils.totalAirports());
-		return AIRPORTS[index];
+		const airport = AIRPORTS[index];
+		if (excludeCountries.includes(airport.country)) {
+			return AirportUtils.randomAirport(excludeCountries);
+		} else {
+			return airport;
+		}
 	}
 
 	static totalAirports() {
@@ -49,6 +55,12 @@ export class AirportUtils {
 		const point2 = new MapCoordinate(arrival.lat, arrival.lon);
 		const distance = FlightMath.getDistance(point1, point2);
 		return FlightMath.metersToNauticalMiles(distance);
+	}
+
+	static getAirportBearing(departure: Airport, arrival: Airport): number {
+		const point1 = new MapCoordinate(departure.lat, departure.lon);
+		const point2 = new MapCoordinate(arrival.lat, arrival.lon);
+		return FlightMath.getBearing(point1, point2);
 	}
 
 	static getAllPossibleAirports(

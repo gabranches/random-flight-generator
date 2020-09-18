@@ -40,7 +40,9 @@ export class FlightGenerator {
 		}
 
 		if (!this.arrival) {
-			this.departure = this.departure || AirportUtils.randomAirport();
+			this.departure =
+				this.departure ||
+				AirportUtils.randomAirport(this.options.excludeCountries);
 			const possibleAirports = AirportUtils.getAllPossibleAirports(
 				this.departure,
 				this.options
@@ -60,7 +62,9 @@ export class FlightGenerator {
 		}
 
 		if (!this.departure) {
-			this.arrival = this.arrival || AirportUtils.randomAirport();
+			this.arrival =
+				this.arrival ||
+				AirportUtils.randomAirport(this.options.excludeCountries);
 			const possibleAirports = AirportUtils.getAllPossibleAirports(
 				this.arrival,
 				this.options
@@ -86,6 +90,11 @@ export class FlightGenerator {
 				this.departure,
 				this.arrival
 			);
+			const bearing = AirportUtils.getAirportBearing(
+				this.departure,
+				this.arrival
+			);
+
 			console.log('Departure');
 			console.log(this.departure);
 			console.log('');
@@ -95,6 +104,7 @@ export class FlightGenerator {
 			console.log(
 				`Flight distance: ${distance.toFixed(2)} nautical miles`
 			);
+			console.log(`Bearing: ${bearing.toFixed(0)} degrees`);
 		} else {
 			console.log('No flights found! Try again.');
 		}

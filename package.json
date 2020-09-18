@@ -4,8 +4,8 @@
 	"description": "",
 	"main": "bin/index.js",
 	"scripts": {
-		"build": "tsc && node bin/index.js",
-		"start": "node bin/index.js",
+		"start": "tsc && node bin/index.js",
+		"bin": "node bin/index.js",
 		"test": "tsc && jest",
 		"watch": "jest --watchAll",
 		"generateJson": "node ./bin/scripts/generateAirports.js"

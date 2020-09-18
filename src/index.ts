@@ -1,9 +1,9 @@
 import { FlightGenerator } from './FlightGenerator';
 
 const flight = new FlightGenerator({
-	// departure: 'FPO',
-	// arrival: 'FLL',
+	// departure: 'KMIA',
+	// arrival: 'KMIA',
 	minDistance: 15,
 	maxDistance: 25,
-	excludeCountries: ['US', 'BR', 'AU', 'CA'],
+	excludeCountries: ['US', 'AU', 'CA'],
 });
