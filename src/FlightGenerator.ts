@@ -48,19 +48,7 @@ export class FlightGenerator {
 				this.departure,
 				this.options
 			);
-			if (possibleAirports.length > 0) {
-				this.arrival =
-					possibleAirports[
-						Math.floor(Math.random() * possibleAirports.length)
-					];
-				this.arrival.randomlyGenerated = true;
-			} else {
-				console.log('No flights found. Trying again.');
-				this.tries++;
-				if (this.tries < this.maxTries) {
-					this.generateFlight();
-				}
-			}
+			this.arrival = this.findMatchingAirport(this.departure);
 		}
 
 		if (!this.departure) {
@@ -71,18 +59,34 @@ export class FlightGenerator {
 				this.arrival,
 				this.options
 			);
-			if (possibleAirports.length > 0) {
-				this.departure =
-					possibleAirports[
-						Math.floor(Math.random() * possibleAirports.length)
-					];
-				this.departure.randomlyGenerated = true;
+			this.departure = this.findMatchingAirport(this.arrival);
+		}
+	}
+
+	private findMatchingAirport(inputAirport?: Airport): Airport | null {
+		inputAirport =
+			inputAirport ||
+			AirportUtils.randomAirport(this.options.excludeCountries);
+
+		const possibleAirports = AirportUtils.getAllPossibleAirports(
+			inputAirport,
+			this.options
+		);
+
+		if (possibleAirports.length > 0) {
+			const outputAirport =
+				possibleAirports[
+					Math.floor(Math.random() * possibleAirports.length)
+				];
+			outputAirport.randomlyGenerated = true;
+			return outputAirport;
+		} else {
+			console.log('No flights found. Trying again.');
+			this.tries++;
+			if (this.tries < this.maxTries) {
+				return this.findMatchingAirport(inputAirport);
 			} else {
-				console.log('No flights found. Trying again.');
-				this.tries++;
-				if (this.tries < this.maxTries) {
-					this.generateFlight();
-				}
+				return null;
 			}
 		}
 	}
