@@ -11,8 +11,10 @@ export interface FlightGeneratorOptions {
 
 export class FlightGenerator {
 	private options: FlightGeneratorOptions;
-	public departure: Airport | undefined;
-	public arrival: Airport | undefined;
+	public departure: Airport | null = null;
+	public arrival: Airport | null = null;
+	public tries = 0;
+	public maxTries = 10;
 
 	constructor(options: FlightGeneratorOptions) {
 		this.options = options;
@@ -21,6 +23,9 @@ export class FlightGenerator {
 	}
 
 	public generateFlight() {
+		this.departure = null;
+		this.arrival = null;
+
 		if (this.options.departure) {
 			this.departure = AirportUtils.getAirport(this.options.departure);
 		}
@@ -33,7 +38,7 @@ export class FlightGenerator {
 			return;
 		}
 
-		if (!this.options.arrival) {
+		if (!this.arrival) {
 			this.departure = this.departure || AirportUtils.randomAirport();
 			const possibleAirports = AirportUtils.getAllPossibleAirports(
 				this.departure,
@@ -45,11 +50,15 @@ export class FlightGenerator {
 						Math.floor(Math.random() * possibleAirports.length)
 					];
 			} else {
-				return;
+				console.log('No flights found. Trying again.');
+				this.tries++;
+				if (this.tries < this.maxTries) {
+					this.generateFlight();
+				}
 			}
 		}
 
-		if (!this.options.departure) {
+		if (!this.departure) {
 			this.arrival = this.arrival || AirportUtils.randomAirport();
 			const possibleAirports = AirportUtils.getAllPossibleAirports(
 				this.arrival,
@@ -61,7 +70,11 @@ export class FlightGenerator {
 						Math.floor(Math.random() * possibleAirports.length)
 					];
 			} else {
-				return;
+				console.log('No flights found. Trying again.');
+				this.tries++;
+				if (this.tries < this.maxTries) {
+					this.generateFlight();
+				}
 			}
 		}
 	}
