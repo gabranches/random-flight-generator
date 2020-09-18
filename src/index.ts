@@ -1,9 +1,9 @@
 import { FlightGenerator } from './FlightGenerator';
 
-const flight = new FlightGenerator({
+new FlightGenerator({
 	// departure: 'KMIA',
 	// arrival: 'KMIA',
 	minDistance: 15,
-	maxDistance: 25,
-	excludeCountries: ['US', 'AU', 'CA'],
+	maxDistance: 50,
+	excludeCountries: ['AU', 'CA'],
 });

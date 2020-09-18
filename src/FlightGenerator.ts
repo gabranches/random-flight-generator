@@ -104,7 +104,9 @@ export class FlightGenerator {
 			);
 			console.log(`Bearing: ${bearing.toFixed(0)} degrees`);
 		} else {
-			console.log('No flights found! Try again.');
+			console.log(
+				'No flights found! Check your flight configuration and try again.'
+			);
 		}
 	}
 }
