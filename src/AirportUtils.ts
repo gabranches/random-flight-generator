@@ -6,20 +6,18 @@ import { FlightMath } from './FlightMath';
 import { FlightGeneratorOptions } from './FlightGenerator';
 
 export interface AirportJson {
-	iata: string;
-	lon?: string;
-	iso: string;
-	status: number;
-	name: string;
-	continent: string;
-	type: string;
-	lat?: string;
-	size: string | null;
+	icao: string;
+	lon?: number;
+	name?: string;
+	lat?: number;
 }
 
-const AIRPORTS: Airport[] = _.filter(AirportsJson, (airport) => {
-	return airport.lat && airport.lon && airport.name;
-}).map((airport) => new Airport(airport as AirportJson));
+const AIRPORTS: Airport[] = _.filter(
+	AirportsJson as AirportJson[],
+	(airport: AirportJson) => {
+		return airport.lat && airport.lon && airport.name;
+	}
+).map((airport) => new Airport(airport as AirportJson));
 
 export class AirportUtils {
 	static randomAirport(): Airport {
@@ -31,9 +29,9 @@ export class AirportUtils {
 		return AIRPORTS.length;
 	}
 
-	static getAirport(iata: string): Airport {
+	static getAirport(icao: string): Airport {
 		const airport = _.find(AIRPORTS, (airport) => {
-			return airport.iata.toLowerCase() == iata.toLowerCase();
+			return airport.icao.toLowerCase() == icao.toLowerCase();
 		});
 		if (!airport) {
 			throw Error('Airport not found.');

@@ -21,16 +21,16 @@ describe('randomAirport', () => {
 
 describe('getAirport', () => {
 	test('returns the correct airport', () => {
-		const airport = AirportUtils.getAirport('MKC');
-		expect(airport.name).toBe('Charles B. Wheeler Downtown Airport');
+		const airport = AirportUtils.getAirport('SDYM');
+		expect(airport.name).toBe('Limeira Airport');
 	});
 });
 
 describe('getAirportDistance', () => {
 	test('returns the correct distance between airports', () => {
-		const departure = AirportUtils.getAirport('MIA');
-		const arrival = AirportUtils.getAirport('MHT');
+		const departure = AirportUtils.getAirport('SDYM');
+		const arrival = AirportUtils.getAirport('SDAA');
 		const distance = AirportUtils.getAirportDistance(departure, arrival);
-		expect(distance.toFixed(2)).toBe('1116.43');
+		expect(distance.toFixed(2)).toBe('16.16');
 	});
 });
