@@ -1,16 +1,10 @@
-import { FlightMath, Point } from './FlightMath';
+import { FlightMath } from './FlightMath';
+import { MapCoordinate } from './MapCoordinate';
 
 describe('getDistance', () => {
 	test('returns the correct distance', () => {
-		const point1: Point = {
-			lat: 10,
-			lon: 20,
-		};
-
-		const point2: Point = {
-			lat: 30,
-			lon: 40,
-		};
+		const point1 = new MapCoordinate(10, 20);
+		const point2 = new MapCoordinate(30, 40);
 
 		const distanceKm = Math.round(
 			FlightMath.getDistance(point1, point2) / 1000

@@ -1,5 +1,6 @@
 import { Airport } from './Airport';
 import { AirportUtils } from './AirportUtils';
+import { FlightMath } from './FlightMath';
 
 describe('totalAirports', () => {
 	test('returns a number', () => {
@@ -22,5 +23,14 @@ describe('getAirport', () => {
 	test('returns the correct airport', () => {
 		const airport = AirportUtils.getAirport('MKC');
 		expect(airport.name).toBe('Charles B. Wheeler Downtown Airport');
+	});
+});
+
+describe('getAirportDistance', () => {
+	test('returns the correct distance between airports', () => {
+		const departure = AirportUtils.getAirport('MIA');
+		const arrival = AirportUtils.getAirport('MHT');
+		const distance = AirportUtils.getAirportDistance(departure, arrival);
+		expect(distance.toFixed(2)).toBe('1116.43');
 	});
 });
