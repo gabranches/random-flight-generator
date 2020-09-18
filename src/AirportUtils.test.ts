@@ -29,12 +29,3 @@ describe('getAirport', () => {
 		expect(airport.name).toBe('Limeira Airport');
 	});
 });
-
-describe('getAirportDistance', () => {
-	test('returns the correct distance between airports', () => {
-		const departure = AirportUtils.getAirport('SDYM');
-		const arrival = AirportUtils.getAirport('SDAA');
-		const distance = AirportUtils.getAirportDistance(departure, arrival);
-		expect(distance.toFixed(2)).toBe('16.16');
-	});
-});

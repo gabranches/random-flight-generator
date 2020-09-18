@@ -1,5 +1,6 @@
 import { Airport } from './Airport';
 import { AirportUtils } from './AirportUtils';
+import { Flight } from './Flight';
 
 export interface FlightGeneratorOptions {
 	departure?: string;
@@ -86,14 +87,9 @@ export class FlightGenerator {
 
 	public printFlightPlan() {
 		if (this.departure && this.arrival) {
-			const distance = AirportUtils.getAirportDistance(
-				this.departure,
-				this.arrival
-			);
-			const bearing = AirportUtils.getAirportBearing(
-				this.departure,
-				this.arrival
-			);
+			const flight = new Flight(this.departure, this.arrival);
+			const distance = flight.getDistance();
+			const bearing = flight.getBearing();
 
 			console.log('Departure');
 			console.log(this.departure);

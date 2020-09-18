@@ -4,6 +4,7 @@ import { Airport } from './Airport';
 import { MapCoordinate } from './MapCoordinate';
 import { FlightMath } from './FlightMath';
 import { FlightGeneratorOptions } from './FlightGenerator';
+import { Flight } from './Flight';
 
 export interface AirportJson {
 	icao: string;
@@ -50,19 +51,6 @@ export class AirportUtils {
 		return airport;
 	}
 
-	static getAirportDistance(departure: Airport, arrival: Airport): number {
-		const point1 = new MapCoordinate(departure.lat, departure.lon);
-		const point2 = new MapCoordinate(arrival.lat, arrival.lon);
-		const distance = FlightMath.getDistance(point1, point2);
-		return FlightMath.metersToNauticalMiles(distance);
-	}
-
-	static getAirportBearing(departure: Airport, arrival: Airport): number {
-		const point1 = new MapCoordinate(departure.lat, departure.lon);
-		const point2 = new MapCoordinate(arrival.lat, arrival.lon);
-		return FlightMath.getBearing(point1, point2);
-	}
-
 	static getAllPossibleAirports(
 		target: Airport,
 		options: FlightGeneratorOptions
@@ -73,10 +61,8 @@ export class AirportUtils {
 		const distanceTolerance = options.distanceTolerance || 0;
 
 		AIRPORTS.forEach((airport) => {
-			const targetDistance = AirportUtils.getAirportDistance(
-				target,
-				airport
-			);
+			const flight = new Flight(target, airport);
+			const targetDistance = flight.getDistance();
 			if (
 				target !== airport &&
 				targetDistance >= minDistance &&
