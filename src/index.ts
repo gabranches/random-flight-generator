@@ -5,4 +5,5 @@ const flight = new FlightGenerator({
 	// arrival: 'FLL',
 	minDistance: 15,
 	maxDistance: 25,
+	excludeCountries: ['US', 'BR', 'AU', 'CA'],
 });

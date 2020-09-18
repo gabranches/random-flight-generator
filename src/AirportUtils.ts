@@ -7,15 +7,20 @@ import { FlightGeneratorOptions } from './FlightGenerator';
 
 export interface AirportJson {
 	icao: string;
-	lon?: number;
-	name?: string;
-	lat?: number;
+	iata: string;
+	lon: number;
+	name: string;
+	lat: number;
+	country: string;
+	state: string;
+	city: string;
+	elevation: number;
 }
 
 const AIRPORTS: Airport[] = _.filter(
 	AirportsJson as AirportJson[],
 	(airport: AirportJson) => {
-		return airport.lat && airport.lon && airport.name;
+		return airport.lat && airport.lon && airport.icao;
 	}
 ).map((airport) => new Airport(airport as AirportJson));
 
@@ -61,9 +66,10 @@ export class AirportUtils {
 				airport
 			);
 			if (
+				target !== airport &&
 				targetDistance >= minDistance &&
 				targetDistance <= maxDistance + distanceTolerance &&
-				target !== airport
+				options.excludeCountries.indexOf(airport.country) === -1
 			) {
 				results.push(airport);
 			}

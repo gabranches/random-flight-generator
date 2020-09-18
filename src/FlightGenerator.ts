@@ -7,6 +7,7 @@ export interface FlightGeneratorOptions {
 	minDistance?: number;
 	maxDistance?: number;
 	distanceTolerance?: number;
+	excludeCountries: string[];
 }
 
 export class FlightGenerator {
