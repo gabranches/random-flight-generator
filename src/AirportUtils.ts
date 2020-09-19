@@ -26,15 +26,15 @@ const AIRPORTS: Airport[] = _.filter(
 ).map((airport) => new Airport(airport as AirportJson));
 
 export class AirportUtils {
-	static randomAirport(excludeCountries?: string[]): Airport {
-		excludeCountries = excludeCountries || [];
+	static randomAirport(options?: FlightGeneratorOptions): Airport {
 		const index = Math.floor(Math.random() * AirportUtils.totalAirports());
 		const airport = AIRPORTS[index];
-		if (excludeCountries.includes(airport.country)) {
-			return AirportUtils.randomAirport(excludeCountries);
-		} else {
+
+		if (airport.validate(options)) {
 			airport.randomlyGenerated = true;
 			return airport;
+		} else {
+			return AirportUtils.randomAirport(options);
 		}
 	}
 
@@ -61,11 +61,10 @@ export class AirportUtils {
 		const maxDistance = options.maxDistance || 9999;
 
 		AIRPORTS.forEach((airport) => {
-			if (options.excludeCountries) {
-				if (options.excludeCountries.indexOf(airport.country) !== -1) {
-					return;
-				}
+			if (!airport.validate(options)) {
+				return;
 			}
+
 			const flight = new Flight(target, airport);
 			const targetDistance = flight.getDistance();
 

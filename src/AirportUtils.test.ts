@@ -18,7 +18,9 @@ describe('randomAirport', () => {
 		expect(typeof airport.lon).toEqual('number');
 	});
 	it('should not return an airport in the country that is excluded', () => {
-		const airport = AirportUtils.randomAirport(['US']);
+		const airport = AirportUtils.randomAirport({
+			excludeCountries: ['US'],
+		});
 		expect(airport.country).not.toEqual('US');
 	});
 });

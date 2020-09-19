@@ -8,6 +8,7 @@ export interface FlightGeneratorOptions {
 	minDistance?: number;
 	maxDistance?: number;
 	excludeCountries?: string[];
+	majorAirportsOnly?: boolean;
 }
 
 export class FlightGenerator {
@@ -37,9 +38,7 @@ export class FlightGenerator {
 			departure = this.findMatchingAirport(arrival);
 		} else {
 			// None specified
-			departure = AirportUtils.randomAirport(
-				this.options.excludeCountries
-			);
+			departure = AirportUtils.randomAirport(this.options);
 			arrival = this.findMatchingAirport(departure);
 		}
 
@@ -62,9 +61,7 @@ export class FlightGenerator {
 	 */
 	public findMatchingAirport(inputAirport?: Airport): Airport {
 		if (!inputAirport) {
-			inputAirport = AirportUtils.randomAirport(
-				this.options.excludeCountries
-			);
+			inputAirport = AirportUtils.randomAirport(this.options);
 		}
 
 		const possibleAirports = AirportUtils.getAllPossibleAirports(

@@ -1,13 +1,7 @@
 import { FlightGenerator } from './FlightGenerator';
+import { options } from './options';
 
-const flightGenerator = new FlightGenerator({
-	// departure: 'KMIA',
-	// arrival: 'KMIA',
-	minDistance: 15,
-	maxDistance: 20,
-	// excludeCountries: ['US', 'AU', 'CA'],
-});
-
+const flightGenerator = new FlightGenerator(options);
 const flight = flightGenerator.generateFlight();
 
 if (flight) {

@@ -1,4 +1,5 @@
 import { AirportJson } from './AirportUtils';
+import { FlightGeneratorOptions } from './FlightGenerator';
 
 export class Airport {
 	public icao: string = '';
@@ -26,5 +27,18 @@ export class Airport {
 		} else {
 			this.randomlyGenerated = true;
 		}
+	}
+
+	public validate(options?: FlightGeneratorOptions): boolean {
+		if (options?.majorAirportsOnly) {
+			if (this.iata === '') return false;
+		}
+
+		if (options?.excludeCountries) {
+			if (options.excludeCountries.indexOf(this.country) !== -1)
+				return false;
+		}
+
+		return true;
 	}
 }
