@@ -1,10 +1,10 @@
 import { FlightGenerator } from './FlightGenerator';
-import { config } from './config';
+import { options } from './options';
 
-const flightGenerator = new FlightGenerator(config);
+const flightGenerator = new FlightGenerator(options);
 const flight = flightGenerator.generateFlight();
 
-if (flight) {
+if (flight.isValid()) {
 	flight.print();
 } else {
 	console.log(
