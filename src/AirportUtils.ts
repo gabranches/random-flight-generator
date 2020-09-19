@@ -59,16 +59,20 @@ export class AirportUtils {
 		const results: Airport[] = [];
 		const minDistance = options.minDistance || 0;
 		const maxDistance = options.maxDistance || 9999;
-		const distanceTolerance = options.distanceTolerance || 0;
 
 		AIRPORTS.forEach((airport) => {
+			if (options.excludeCountries) {
+				if (options.excludeCountries.indexOf(airport.country) !== -1) {
+					return;
+				}
+			}
 			const flight = new Flight(target, airport);
 			const targetDistance = flight.getDistance();
+
 			if (
 				target !== airport &&
 				targetDistance >= minDistance &&
-				targetDistance <= maxDistance + distanceTolerance &&
-				options.excludeCountries?.indexOf(airport.country) === -1
+				targetDistance <= maxDistance
 			) {
 				results.push(airport);
 			}

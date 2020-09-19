@@ -7,7 +7,6 @@ export interface FlightGeneratorOptions {
 	arrival?: string;
 	minDistance?: number;
 	maxDistance?: number;
-	distanceTolerance?: number;
 	excludeCountries?: string[];
 }
 
@@ -16,8 +15,8 @@ export class FlightGenerator {
 	public tries = 0;
 	public maxTries = 10;
 
-	constructor(options: FlightGeneratorOptions) {
-		this.options = options;
+	constructor(options?: FlightGeneratorOptions) {
+		this.options = options || {};
 	}
 
 	public generateFlight(): Flight {
@@ -27,7 +26,7 @@ export class FlightGenerator {
 		if (this.options.departure && this.options.arrival) {
 			// Both airports specified
 			departure = AirportUtils.getAirport(this.options.departure);
-			arrival = AirportUtils.getAirport(this.options.departure);
+			arrival = AirportUtils.getAirport(this.options.arrival);
 		} else if (this.options.departure) {
 			// Departure specified
 			departure = AirportUtils.getAirport(this.options.departure);

@@ -5,6 +5,7 @@
 	"main": "bin/index.js",
 	"scripts": {
 		"start": "tsc && node bin/index.js",
+		"build": "tsc",
 		"bin": "node bin/index.js",
 		"test": "tsc && jest",
 		"watch": "jest --watchAll",

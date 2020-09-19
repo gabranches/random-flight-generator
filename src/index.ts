@@ -1,7 +1,7 @@
 import { FlightGenerator } from './FlightGenerator';
 
 const flightGenerator = new FlightGenerator({
-	// departure: 'KMIA',
+	departure: 'KMIA',
 	// arrival: 'KMIA',
 	minDistance: 15,
 	maxDistance: 20,
