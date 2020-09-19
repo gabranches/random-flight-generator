@@ -2,7 +2,7 @@ import { FlightMath } from './FlightMath';
 import { MapCoordinate } from './MapCoordinate';
 
 describe('getDistance', () => {
-	test('returns the correct distance', () => {
+	it('returns the correct distance', () => {
 		const start = new MapCoordinate(10, 20);
 		const end = new MapCoordinate(30, 40);
 
@@ -15,7 +15,7 @@ describe('getDistance', () => {
 });
 
 describe('getBearing', () => {
-	test('returns the correct bearing', () => {
+	it('returns the correct bearing', () => {
 		const start = new MapCoordinate(10, 20);
 		const end = new MapCoordinate(30, 40);
 
@@ -24,7 +24,7 @@ describe('getBearing', () => {
 });
 
 describe('metersToNauticalMiles', () => {
-	test('converts correctly', () => {
+	it('converts correctly', () => {
 		expect(FlightMath.metersToNauticalMiles(1852)).toBe(1);
 	});
 });

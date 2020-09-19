@@ -68,7 +68,7 @@ export class AirportUtils {
 				target !== airport &&
 				targetDistance >= minDistance &&
 				targetDistance <= maxDistance + distanceTolerance &&
-				options.excludeCountries.indexOf(airport.country) === -1
+				options.excludeCountries?.indexOf(airport.country) === -1
 			) {
 				results.push(airport);
 			}

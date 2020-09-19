@@ -8,7 +8,7 @@ export interface FlightGeneratorOptions {
 	minDistance?: number;
 	maxDistance?: number;
 	distanceTolerance?: number;
-	excludeCountries: string[];
+	excludeCountries?: string[];
 }
 
 export class FlightGenerator {
@@ -20,40 +20,48 @@ export class FlightGenerator {
 		this.options = options;
 	}
 
-	public generateFlight(): Flight | null {
-		let departure = null;
-		let arrival = null;
+	public generateFlight(): Flight {
+		let departure;
+		let arrival;
 
-		if (this.options.departure) {
+		if (this.options.departure && this.options.arrival) {
+			// Both airports specified
 			departure = AirportUtils.getAirport(this.options.departure);
-		}
-
-		if (this.options.arrival) {
+			arrival = AirportUtils.getAirport(this.options.departure);
+		} else if (this.options.departure) {
+			// Departure specified
+			departure = AirportUtils.getAirport(this.options.departure);
+			arrival = this.findMatchingAirport(departure);
+		} else if (this.options.arrival) {
+			// Arrival specified
 			arrival = AirportUtils.getAirport(this.options.arrival);
-		}
-
-		if (!arrival) {
+			departure = this.findMatchingAirport(arrival);
+		} else {
+			// None specified
+			departure = AirportUtils.randomAirport(
+				this.options.excludeCountries
+			);
 			arrival = this.findMatchingAirport(departure);
 		}
 
-		if (!departure) {
-			departure = this.findMatchingAirport(arrival);
-		}
-
-		if (!departure || !arrival) {
-			console.log('No flights found. Trying again.');
+		if (departure === arrival) {
+			// If departure and arrival are the same, no valid flights were found
 			this.tries++;
+			console.log(
+				`No flights found. Trying again. Attempts: ${this.tries}`
+			);
 			if (this.tries < this.maxTries) {
 				return this.generateFlight();
-			} else {
-				return null;
 			}
 		}
-
 		return new Flight(departure, arrival);
 	}
 
-	private findMatchingAirport(inputAirport: Airport | null): Airport | null {
+	/**
+	 * Finds an airport that satisfies the FlightGenerator options.
+	 * Returns the same airport if no match is found.
+	 */
+	public findMatchingAirport(inputAirport?: Airport): Airport {
 		if (!inputAirport) {
 			inputAirport = AirportUtils.randomAirport(
 				this.options.excludeCountries
@@ -73,7 +81,7 @@ export class FlightGenerator {
 			outputAirport.randomlyGenerated = true;
 			return outputAirport;
 		} else {
-			return null;
+			return inputAirport;
 		}
 	}
 }

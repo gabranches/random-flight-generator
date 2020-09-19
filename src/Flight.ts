@@ -30,6 +30,12 @@ export class Flight {
 		return FlightMath.getBearing(point1, point2);
 	}
 
+	public isValid(): boolean {
+		return (
+			this.departure && this.arrival && this.departure !== this.arrival
+		);
+	}
+
 	public print() {
 		if (this.departure && this.arrival) {
 			console.log('Departure');
