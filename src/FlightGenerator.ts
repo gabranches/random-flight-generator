@@ -13,10 +13,6 @@ export interface FlightGeneratorOptions {
 
 export class FlightGenerator {
 	private options: FlightGeneratorOptions;
-	public departure: Airport | null = null;
-	public fixedDeparture = false;
-	public fixedArrival = false;
-	public arrival: Airport | null = null;
 	public tries = 0;
 	public maxTries = 10;
 
@@ -34,10 +30,6 @@ export class FlightGenerator {
 
 		if (this.options.arrival) {
 			arrival = AirportUtils.getAirport(this.options.arrival);
-		}
-
-		if (departure && arrival) {
-			return new Flight(departure, arrival);
 		}
 
 		if (!arrival) {
