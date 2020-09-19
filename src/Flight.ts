@@ -29,4 +29,21 @@ export class Flight {
 		const point2 = new MapCoordinate(this.arrival.lat, this.arrival.lon);
 		return FlightMath.getBearing(point1, point2);
 	}
+
+	public print() {
+		if (this.departure && this.arrival) {
+			console.log('Departure');
+			console.log(this.departure);
+			console.log('');
+			console.log('Arrival');
+			console.log(this.arrival);
+			console.log('');
+			console.log(
+				`Flight distance: ${this.getDistance().toFixed(
+					2
+				)} nautical miles`
+			);
+			console.log(`Bearing: ${this.getBearing().toFixed(0)} degrees`);
+		}
+	}
 }
