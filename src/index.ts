@@ -1,7 +1,7 @@
 import { FlightGenerator } from './FlightGenerator';
-import { options } from './options';
+import { config } from './config';
 
-const flightGenerator = new FlightGenerator(options);
+const flightGenerator = new FlightGenerator(config);
 const flight = flightGenerator.generateFlight();
 
 if (flight) {
