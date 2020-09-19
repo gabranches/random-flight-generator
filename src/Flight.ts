@@ -38,11 +38,16 @@ export class Flight {
 
 	public print() {
 		if (this.departure && this.arrival) {
+			console.log('');
 			console.log('Departure');
-			console.log(this.departure);
+			console.log('-----------------------------------');
+			this.departure.print();
+			console.log('');
 			console.log('');
 			console.log('Arrival');
-			console.log(this.arrival);
+			console.log('-----------------------------------');
+			this.arrival.print();
+			console.log('');
 			console.log('');
 			console.log(
 				`Flight distance: ${this.getDistance().toFixed(

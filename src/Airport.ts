@@ -1,4 +1,5 @@
 import { AirportJson } from './AirportUtils';
+import { Country } from './Country';
 import { FlightGeneratorOptions } from './FlightGenerator';
 
 export class Airport {
@@ -40,5 +41,19 @@ export class Airport {
 		}
 
 		return true;
+	}
+
+	public getCountryName() {
+		return new Country(this.country).getName();
+	}
+
+	public print(): void {
+		console.log(`Name: ${this.name}`);
+		console.log(`ICAO: ${this.icao}`);
+		console.log(`IATA: ${this.iata}`);
+		console.log(`Country: ${this.getCountryName()} ${this.country}`);
+		console.log(`State: ${this.state}`);
+		console.log(`City: ${this.city}`);
+		console.log(`Elevation: ${this.elevation} feet`);
 	}
 }

@@ -9,10 +9,10 @@ export const options = {
 	minDistance: 15,
 
 	// The maximum flight distance in nautical miles
-	maxDistance: 100,
+	maxDistance: 25,
 
 	// Add countries to this array to exclude them from the results
-	// excludeCountries: ['US', 'AU', 'CA'],
+	excludeCountries: ['US', 'AU', 'CA'],
 
 	// Set to true to only include airports with IATA codes
 	majorAirportsOnly: true,
