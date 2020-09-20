@@ -5,7 +5,7 @@ export class FlightMath {
 	 * Returns the distance in meters between two MapCoordinates
 	 * Source: https://www.movable-type.co.uk/scripts/latlong.html
 	 **/
-	static getDistance(start: MapCoordinate, end: MapCoordinate) {
+	public static getDistance(start: MapCoordinate, end: MapCoordinate) {
 		const R = 6371e3; // metres
 		const φ1 = (start.lat * Math.PI) / 180; // φ, λ in radians
 		const φ2 = (end.lat * Math.PI) / 180;
@@ -23,13 +23,11 @@ export class FlightMath {
 	 * Returns the bearing in degrees between two MapCoordinates
 	 * Source: https://www.movable-type.co.uk/scripts/latlong.html
 	 **/
-	static getBearing(start: MapCoordinate, end: MapCoordinate) {
+	public static getBearing(start: MapCoordinate, end: MapCoordinate) {
 		const φ1 = (start.lat * Math.PI) / 180; // φ, λ in radians
 		const φ2 = (end.lat * Math.PI) / 180;
-
 		const λ1 = (start.lon * Math.PI) / 180; // φ, λ in radians
 		const λ2 = (end.lon * Math.PI) / 180;
-
 		const y = Math.sin(λ2 - λ1) * Math.cos(φ2);
 		const x =
 			Math.cos(φ1) * Math.sin(φ2) -
@@ -38,7 +36,7 @@ export class FlightMath {
 		return ((θ * 180) / Math.PI + 360) % 360; // in degrees
 	}
 
-	static metersToNauticalMiles(distance: number) {
+	public static metersToNauticalMiles(distance: number) {
 		return distance / 1852;
 	}
 }

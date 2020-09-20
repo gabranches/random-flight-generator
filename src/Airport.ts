@@ -47,12 +47,16 @@ export class Airport {
 		return new Country(this.country).getName();
 	}
 
+	public getState() {
+		return this.state.replace('-', ' ');
+	}
+
 	public print(): void {
 		console.log(`Name: ${this.name}`);
 		console.log(`ICAO: ${this.icao}`);
 		console.log(`IATA: ${this.iata}`);
-		console.log(`Country: ${this.getCountryName()} ${this.country}`);
-		console.log(`State: ${this.state}`);
+		console.log(`Country: ${this.getCountryName()} - ${this.country}`);
+		console.log(`State: ${this.getState()}`);
 		console.log(`City: ${this.city}`);
 		console.log(`Elevation: ${this.elevation} feet`);
 	}

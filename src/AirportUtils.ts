@@ -26,7 +26,7 @@ const AIRPORTS: Airport[] = _.filter(
 ).map((airport) => new Airport(airport as AirportJson));
 
 export class AirportUtils {
-	static randomAirport(options?: FlightGeneratorOptions): Airport {
+	public static randomAirport(options?: FlightGeneratorOptions): Airport {
 		const index = Math.floor(Math.random() * AirportUtils.totalAirports());
 		const airport = AIRPORTS[index];
 
@@ -38,11 +38,11 @@ export class AirportUtils {
 		}
 	}
 
-	static totalAirports() {
+	public static totalAirports() {
 		return AIRPORTS.length;
 	}
 
-	static getAirport(icao: string): Airport {
+	public static getAirport(icao: string): Airport {
 		const airport = _.find(AIRPORTS, (airport) => {
 			return airport.icao.toLowerCase() == icao.toLowerCase();
 		});
@@ -52,7 +52,7 @@ export class AirportUtils {
 		return airport;
 	}
 
-	static getAllPossibleAirports(
+	public static getAllPossibleAirports(
 		target: Airport,
 		options: FlightGeneratorOptions
 	): Airport[] {

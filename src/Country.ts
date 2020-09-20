@@ -5,7 +5,7 @@ export class Country {
 	constructor(code: string) {
 		this.code = code;
 	}
-	getName() {
-		return (countries as any)[this.code];
+	public getName() {
+		return (countries as { [key: string]: string })[this.code];
 	}
 }
