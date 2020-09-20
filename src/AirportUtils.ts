@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import * as AirportsJson from './data/airports.json';
 import { Airport } from './Airport';
-import { FlightGeneratorOptions } from './FlightGenerator';
+import { FlightGenerator } from './FlightGenerator';
 import { Flight } from './Flight';
 
 export interface AirportJson {
@@ -24,16 +24,17 @@ const AIRPORTS: Airport[] = _.filter(
 ).map((airport) => new Airport(airport as AirportJson));
 
 export class AirportUtils {
-	public static randomAirport(options?: FlightGeneratorOptions): Airport {
-		const index = Math.floor(Math.random() * AirportUtils.totalAirports());
-		const airport = AIRPORTS[index];
+	public static randomAirport(flightGenerator?: FlightGenerator): Airport {
+		let airports = AIRPORTS;
 
-		if (airport.validate(options)) {
-			airport.randomlyGenerated = true;
-			return airport;
-		} else {
-			return AirportUtils.randomAirport(options);
+		if (flightGenerator) {
+			airports = flightGenerator.airports;
 		}
+		const index = Math.floor(Math.random() * airports.length);
+		const airport = airports[index];
+
+		airport.randomlyGenerated = true;
+		return airport;
 	}
 
 	public static totalAirports(): number {
@@ -52,17 +53,13 @@ export class AirportUtils {
 
 	public static getAllPossibleAirports(
 		target: Airport,
-		options: FlightGeneratorOptions
+		flightGenerator: FlightGenerator
 	): Airport[] {
 		const results: Airport[] = [];
-		const minDistance = options.minDistance || 0;
-		const maxDistance = options.maxDistance || 9999;
+		const minDistance = flightGenerator.options.minDistance || 0;
+		const maxDistance = flightGenerator.options.maxDistance || 9999;
 
-		AIRPORTS.forEach((airport) => {
-			if (!airport.validate(options)) {
-				return;
-			}
-
+		flightGenerator.airports.forEach((airport) => {
 			const flight = new Flight(target, airport);
 			const targetDistance = flight.getDistance();
 

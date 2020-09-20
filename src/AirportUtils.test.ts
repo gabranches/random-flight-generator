@@ -1,4 +1,5 @@
 import { AirportUtils } from './AirportUtils';
+import { FlightGenerator } from './FlightGenerator';
 
 describe('totalAirports', () => {
 	it('returns a number', () => {
@@ -16,9 +17,10 @@ describe('randomAirport', () => {
 		expect(typeof airport.lon).toEqual('number');
 	});
 	it('should not return an airport in the country that is excluded', () => {
-		const airport = AirportUtils.randomAirport({
+		const flightGenerator = new FlightGenerator({
 			excludeCountries: ['US'],
 		});
+		const airport = AirportUtils.randomAirport(flightGenerator);
 		expect(airport.country).not.toEqual('US');
 	});
 });

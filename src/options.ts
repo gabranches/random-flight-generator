@@ -6,13 +6,16 @@ export const options = {
 	// arrival: 'KMIA',
 
 	// The minimum flight distance in nautical miles
-	minDistance: 15,
+	minDistance: 20,
 
 	// The maximum flight distance in nautical miles
-	maxDistance: 200,
+	maxDistance: 35,
 
 	// Add countries to this array to exclude them from the results
-	// excludeCountries: ['US', 'AU', 'CA'],
+	// includeCountries: ['AT'],
+
+	// Add countries to this array to exclude them from the results
+	// excludeCountries: ['US', 'AU'],
 
 	// Set to true to only include airports with IATA codes
 	majorAirportsOnly: true,

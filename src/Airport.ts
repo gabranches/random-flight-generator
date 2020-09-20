@@ -32,14 +32,18 @@ export class Airport {
 
 	public validate(options?: FlightGeneratorOptions): boolean {
 		if (options?.majorAirportsOnly) {
-			if (this.iata === '') return false;
+			if (!this.iata) return false;
+		}
+
+		if (options?.includeCountries) {
+			if (options.includeCountries.indexOf(this.country) === -1)
+				return false;
 		}
 
 		if (options?.excludeCountries) {
 			if (options.excludeCountries.indexOf(this.country) !== -1)
 				return false;
 		}
-
 		return true;
 	}
 
