@@ -49,12 +49,19 @@ export class Flight {
 			this.arrival.print();
 			console.log('');
 			console.log('');
+			console.log('Flight Details');
+			console.log('-----------------------------------');
 			console.log(
 				`Flight distance: ${this.getDistance().toFixed(
 					2
 				)} nautical miles`
 			);
 			console.log(`Bearing: ${this.getBearing().toFixed(0)} degrees`);
+			console.log(
+				`Elevation change: ${
+					this.arrival.elevation - this.departure.elevation
+				} feet`
+			);
 		}
 	}
 }
