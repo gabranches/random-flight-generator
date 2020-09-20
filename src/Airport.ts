@@ -3,18 +3,18 @@ import { Country } from './Country';
 import { FlightGeneratorOptions } from './FlightGenerator';
 
 export class Airport {
-	public icao: string = '';
-	public iata: string = '';
-	public lat: number = 0;
-	public lon: number = 0;
-	public name: string = '';
-	public country: string = '';
-	public state: string = '';
-	public city: string = '';
-	public elevation: number = 0;
+	public icao = '';
+	public iata = '';
+	public lat = 0;
+	public lon = 0;
+	public name = '';
+	public country = '';
+	public state = '';
+	public city = '';
+	public elevation = 0;
 	public randomlyGenerated = false;
 
-	constructor(airport: AirportJson | undefined) {
+	public constructor(airport: AirportJson | undefined) {
 		if (airport) {
 			this.icao = airport.icao;
 			this.iata = airport.iata;
@@ -43,11 +43,11 @@ export class Airport {
 		return true;
 	}
 
-	public getCountryName() {
+	public getCountryName(): string {
 		return new Country(this.country).getName();
 	}
 
-	public getState() {
+	public getState(): string {
 		return this.state.replace('-', ' ');
 	}
 

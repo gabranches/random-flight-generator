@@ -1,6 +1,4 @@
-import { Airport } from './Airport';
 import { AirportUtils } from './AirportUtils';
-import { FlightMath } from './FlightMath';
 
 describe('totalAirports', () => {
 	it('returns a number', () => {

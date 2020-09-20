@@ -1,8 +1,6 @@
 import _ from 'lodash';
 import * as AirportsJson from './data/airports.json';
 import { Airport } from './Airport';
-import { MapCoordinate } from './MapCoordinate';
-import { FlightMath } from './FlightMath';
 import { FlightGeneratorOptions } from './FlightGenerator';
 import { Flight } from './Flight';
 
@@ -38,7 +36,7 @@ export class AirportUtils {
 		}
 	}
 
-	public static totalAirports() {
+	public static totalAirports(): number {
 		return AIRPORTS.length;
 	}
 

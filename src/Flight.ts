@@ -6,7 +6,7 @@ export class Flight {
 	public departure: Airport;
 	public arrival: Airport;
 
-	constructor(departure: Airport, arrival: Airport) {
+	public constructor(departure: Airport, arrival: Airport) {
 		this.departure = departure;
 		this.arrival = arrival;
 	}
@@ -36,7 +36,7 @@ export class Flight {
 		);
 	}
 
-	public print() {
+	public print(): void {
 		if (this.departure && this.arrival) {
 			console.log('');
 			console.log('Departure');

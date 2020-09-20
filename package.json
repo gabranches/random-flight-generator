@@ -4,12 +4,13 @@
 	"description": "",
 	"main": "bin/index.js",
 	"scripts": {
-		"start": "tsc && node bin/index.js",
+		"start": "eslint . --ext .ts && tsc && node bin/index.js",
 		"build": "tsc",
 		"bin": "node bin/index.js",
 		"test": "tsc && jest",
 		"watch": "jest --watchAll",
-		"generateJson": "node ./bin/scripts/generateAirports.js"
+		"generateJson": "node ./bin/scripts/generateAirports.js",
+		"lint": "eslint . --ext .ts"
 	},
 	"author": "",
 	"license": "ISC",
@@ -17,10 +18,14 @@
 		"@types/jest": "^26.0.14",
 		"@types/lodash": "^4.14.159",
 		"@types/node": "^14.11.1",
+		"@typescript-eslint/eslint-plugin": "^4.1.1",
+		"@typescript-eslint/parser": "^4.1.1",
 		"axios": "^0.19.2",
+		"eslint": "^7.9.0",
 		"jest": "^26.4.2"
 	},
 	"dependencies": {
-		"lodash": "^4.17.20"
+		"lodash": "^4.17.20",
+		"typescript": "^4.0.3"
 	}
 }

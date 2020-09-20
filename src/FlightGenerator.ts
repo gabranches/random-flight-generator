@@ -16,7 +16,7 @@ export class FlightGenerator {
 	public tries = 0;
 	public maxTries = 10;
 
-	constructor(options?: FlightGeneratorOptions) {
+	public constructor(options?: FlightGeneratorOptions) {
 		this.options = options || {};
 	}
 

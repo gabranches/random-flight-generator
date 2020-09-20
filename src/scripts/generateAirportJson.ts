@@ -1,8 +1,9 @@
 import source from '../data/source.json';
 import _ from 'lodash';
 import fs from 'fs';
+import { AirportJson } from '../AirportUtils';
 
-const airports: any = [];
+const airports: { [key: string]: AirportJson }[] = [];
 
 _.each(source, (airport) => {
 	airports.push(airport);
