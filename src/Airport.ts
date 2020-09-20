@@ -14,7 +14,7 @@ export class Airport {
 	public elevation = 0;
 	public randomlyGenerated = false;
 
-	public constructor(airport: AirportJson | undefined) {
+	public constructor(airport?: AirportJson) {
 		if (airport) {
 			this.icao = airport.icao;
 			this.iata = airport.iata;
