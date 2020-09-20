@@ -11,7 +11,7 @@ export const options = {
 	// The maximum flight distance in nautical miles
 	maxDistance: 35,
 
-	// Add countries to this array to exclude them from the results
+	// Add countries to this array to include them in the results
 	// includeCountries: ['AT'],
 
 	// Add countries to this array to exclude them from the results
