@@ -34,7 +34,7 @@ describe('satisfiesFlightGeneratorOptions', () => {
 			airport.satisfiesFlightGeneratorOptions({
 				includeCountries: [],
 			})
-		).toBe(true);
+		).toBe(false);
 	});
 	it('should return false with excludeCountries', () => {
 		expect(
