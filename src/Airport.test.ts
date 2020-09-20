@@ -1,13 +1,53 @@
+import { Airport } from './Airport';
 import { AirportUtils } from './AirportUtils';
 
-describe('validate', () => {
-	it('majorAirportsOnly filter only returns airports with iata', () => {
-		const airport = AirportUtils.getAirport('VYLY');
-		expect(airport.validate({ majorAirportsOnly: true })).toBe(false);
-	});
+let airport: Airport;
 
-	it('excludeCountries filter excludes correct countries', () => {
-		const airport = AirportUtils.getAirport('KMIA');
-		expect(airport.validate({ excludeCountries: ['US'] })).toBe(false);
+beforeEach(() => {
+	airport = AirportUtils.getAirport('KMIA');
+});
+
+describe('satisfiesFlightGeneratorOptions', () => {
+	it('should return true with no options', () => {
+		expect(airport.satisfiesFlightGeneratorOptions()).toBe(true);
+	});
+	it('should return true for a large airport with majorAirportsOnly', () => {
+		expect(
+			airport.satisfiesFlightGeneratorOptions({ majorAirportsOnly: true })
+		).toBe(true);
+	});
+	it('should return false for a small airport with majorAirportsOnly', () => {
+		airport = AirportUtils.getAirport('SDZX');
+		expect(
+			airport.satisfiesFlightGeneratorOptions({ majorAirportsOnly: true })
+		).toBe(false);
+	});
+	it('should return true with includeCountries', () => {
+		expect(
+			airport.satisfiesFlightGeneratorOptions({
+				includeCountries: ['US'],
+			})
+		).toBe(true);
+	});
+	it('should return false with empty includeCountries', () => {
+		expect(
+			airport.satisfiesFlightGeneratorOptions({
+				includeCountries: [],
+			})
+		).toBe(true);
+	});
+	it('should return false with excludeCountries', () => {
+		expect(
+			airport.satisfiesFlightGeneratorOptions({
+				excludeCountries: ['US'],
+			})
+		).toBe(false);
+	});
+	it('should return true with empty excludeCountries', () => {
+		expect(
+			airport.satisfiesFlightGeneratorOptions({
+				excludeCountries: [],
+			})
+		).toBe(true);
 	});
 });

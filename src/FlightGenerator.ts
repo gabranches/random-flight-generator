@@ -26,39 +26,11 @@ export class FlightGenerator {
 	}
 
 	public setupAirports(): void {
-		this.airports = _.filter(
+		this.airports = _.map(
 			AirportsJson as AirportJson[],
-			(airport: AirportJson) => {
-				return this.filterAirport(airport);
-			}
-		).map((airport) => new Airport(airport as AirportJson));
-	}
-
-	public filterAirport(airport: AirportJson): boolean {
-		const hasLatitude = !!airport.lat;
-		const hasLongitude = !!airport.lon;
-		const hasIcao = !!airport.icao;
-		let includeCountries = true;
-		let excludeCountries = true;
-
-		if (this.options.includeCountries) {
-			includeCountries = this.options.includeCountries.includes(
-				airport.country
-			);
-		}
-
-		if (this.options.excludeCountries) {
-			excludeCountries = !this.options.excludeCountries.includes(
-				airport.country
-			);
-		}
-
-		return (
-			hasLatitude &&
-			hasLongitude &&
-			hasIcao &&
-			includeCountries &&
-			excludeCountries
+			(airport) => new Airport(airport as AirportJson)
+		).filter((airport: Airport) =>
+			airport.satisfiesFlightGeneratorOptions(this.options)
 		);
 	}
 

@@ -30,29 +30,44 @@ export class Airport {
 		}
 	}
 
-	public validate(options?: FlightGeneratorOptions): boolean {
-		if (options?.majorAirportsOnly) {
-			if (!this.iata) return false;
-		}
-
-		if (options?.includeCountries) {
-			if (options.includeCountries.indexOf(this.country) === -1)
-				return false;
-		}
-
-		if (options?.excludeCountries) {
-			if (options.excludeCountries.indexOf(this.country) !== -1)
-				return false;
-		}
-		return true;
-	}
-
 	public getCountryName(): string {
 		return new Country(this.country).getName();
 	}
 
 	public getState(): string {
 		return this.state.replace('-', ' ');
+	}
+
+	public satisfiesFlightGeneratorOptions(
+		options?: FlightGeneratorOptions
+	): boolean {
+		const hasLatitude = !!this.lat;
+		const hasLongitude = !!this.lon;
+		const hasIcao = !!this.icao;
+		let includeCountries = true;
+		let excludeCountries = true;
+		let majorAirportsOnly = true;
+
+		if (options?.includeCountries) {
+			includeCountries = options.includeCountries.includes(this.country);
+		}
+
+		if (options?.excludeCountries) {
+			excludeCountries = !options.excludeCountries.includes(this.country);
+		}
+
+		if (options?.majorAirportsOnly) {
+			majorAirportsOnly = !!this.iata;
+		}
+
+		return (
+			hasLatitude &&
+			hasLongitude &&
+			hasIcao &&
+			includeCountries &&
+			excludeCountries &&
+			majorAirportsOnly
+		);
 	}
 
 	public print(): void {
