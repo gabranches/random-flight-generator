@@ -1,5 +1,5 @@
 {
-	"name": "random-flight-simulator",
+	"name": "random-flight-generator",
 	"version": "1.0.0",
 	"description": "A tool for generating random flights.",
 	"main": "lib/index.js",
