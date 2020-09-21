@@ -40,5 +40,9 @@
 		"Random",
 		"Flight",
 		"Simulator"
-	]
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/gabranches/random-flight-generator.git"
+	}
 }
