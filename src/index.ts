@@ -1,6 +1,14 @@
+import { Flight } from './Flight';
 import { FlightGenerator, FlightGeneratorOptions } from './FlightGenerator';
 
-export default (options: FlightGeneratorOptions) => {
+interface FlightGeneratorError {
+	isValid: () => boolean;
+	log: () => string;
+}
+
+export default (
+	options: FlightGeneratorOptions
+): Flight | FlightGeneratorError => {
 	const flightGenerator = new FlightGenerator(options);
 	const flight = flightGenerator.generateFlight();
 

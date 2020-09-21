@@ -1,4 +1,3 @@
-import { Flight } from './Flight';
 import { FlightGeneratorOptions } from './FlightGenerator';
 import RandomFlightGenerator from './index';
 
