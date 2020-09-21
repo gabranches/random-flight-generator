@@ -1,6 +1,6 @@
 import { FlightGenerator, FlightGeneratorOptions } from './FlightGenerator';
 
-export const RandomFlightGenerator = (options: FlightGeneratorOptions) => {
+export default (options: FlightGeneratorOptions) => {
 	const flightGenerator = new FlightGenerator(options);
 	const flight = flightGenerator.generateFlight();
 

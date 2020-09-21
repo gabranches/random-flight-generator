@@ -1,6 +1,6 @@
 import { Flight } from './Flight';
 import { FlightGeneratorOptions } from './FlightGenerator';
-import { RandomFlightGenerator } from './index';
+import RandomFlightGenerator from './index';
 
 describe('RandomFlightGenerator', () => {
 	it('should take FlightGeneratorOptions and return a flight when valid', () => {
