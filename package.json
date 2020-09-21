@@ -5,7 +5,7 @@
 	"main": "lib/index.js",
 	"scripts": {
 		"start": "eslint . --ext .ts && tsc && node lib/index.js",
-		"build": "tsc",
+		"build": "rm -rf lib/ && tsc",
 		"lib": "node lib/index.js",
 		"test": "tsc && jest",
 		"watch": "jest --watchAll",
