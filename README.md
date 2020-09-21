@@ -9,10 +9,12 @@
 var flightGenerator = require("random-flight-generator");
 
 var options = { minDistance: 5, maxDistance: 100 }
-
 var flight = flightGenerator(options);
 
-flight.print(); // Logs the flight information
+console.log(flight.departure);
+console.log(flight.arrival);
+
+flight.print(); // Logs all the flight information
 ```
 
 
