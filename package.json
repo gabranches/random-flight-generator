@@ -3,6 +3,7 @@
 	"version": "1.0.6",
 	"description": "A tool for generating random flights.",
 	"main": "lib/index.js",
+	"types": "lib/index.d.ts",
 	"scripts": {
 		"start": "eslint . --ext .ts && tsc && node lib/index.js",
 		"build": "rm -rf lib/ && tsc",
@@ -35,7 +36,6 @@
 	"dependencies": {
 		"lodash": "^4.17.20"
 	},
-	"types": "index.d.ts",
 	"keywords": [
 		"Random",
 		"Flight",
