@@ -6,9 +6,7 @@ interface FlightGeneratorError {
 	log: () => string;
 }
 
-export default (
-	options: FlightGeneratorOptions
-): Flight | FlightGeneratorError => {
+export = (options: FlightGeneratorOptions): Flight | FlightGeneratorError => {
 	const flightGenerator = new FlightGenerator(options);
 	const flight = flightGenerator.generateFlight();
 
