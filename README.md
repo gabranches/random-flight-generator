@@ -20,7 +20,7 @@ flight.print(); // Logs all the flight information
 
 ### Options
 
-| Option  | Type | Example |  Description |
+| Key  | Type | Example Value |  Description |
 | ------------- | ------------- | ------------- | ------------- |
 | minDistance  | number | 5  | The minimum distance (in nautical miles) that the generated flight must have  |
 | maxDistance  | number | 100  | The maximum distance (in nautical miles) that the generated flight must have  |
