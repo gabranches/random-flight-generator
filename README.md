@@ -7,7 +7,7 @@
 
 #### JS
 ```
-var flightGenerator = require("random-flight-generator");
+var flightGenerator = require('random-flight-generator');
 
 var options = { minDistance: 5, maxDistance: 100 }
 var flight = flightGenerator(options);
@@ -20,7 +20,7 @@ flight.print(); // Logs all the flight information
 
 #### TS
 ```
-import flightGenerator from "random-flight-generator";
+import flightGenerator from 'random-flight-generator';
 
 const options = { minDistance: 5, maxDistance: 100 }
 const flight = flightGenerator(options);
