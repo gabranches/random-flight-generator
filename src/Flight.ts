@@ -2,6 +2,14 @@ import { Airport } from './Airport';
 import { FlightMath } from './FlightMath';
 import { MapCoordinate } from './MapCoordinate';
 
+interface FlightJson {
+	departure: Airport;
+	arrival: Airport;
+	bearing: number;
+	distance: number;
+	isValid: boolean;
+}
+
 export class Flight {
 	public departure: Airport;
 	public arrival: Airport;
@@ -34,6 +42,16 @@ export class Flight {
 		return (
 			this.departure && this.arrival && this.departure !== this.arrival
 		);
+	}
+
+	public toJson(): FlightJson {
+		return {
+			departure: this.departure,
+			arrival: this.arrival,
+			bearing: this.getBearing(),
+			distance: this.getDistance(),
+			isValid: this.isValid(),
+		};
 	}
 
 	public print(): void {
