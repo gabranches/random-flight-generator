@@ -12,7 +12,6 @@
 		"generateJson": "node ./lib/scripts/generateAirports.js",
 		"lint": "eslint . --ext .ts",
 		"prepare": "npm run build",
-		"prepublishOnly": "npm test && npm run lint",
 		"preversion": "npm run lint",
 		"version": "git add -A src",
 		"postversion": "git push && git push --tags"
