@@ -1,5 +1,5 @@
-import { Airport } from './Airport';
-import { AirportUtils } from './AirportUtils';
+import { Airport } from '../Airport';
+import { AirportUtils } from '../AirportUtils';
 
 let airport: Airport;
 

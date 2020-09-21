@@ -1,6 +1,6 @@
-import { AirportUtils } from './AirportUtils';
-import { Flight } from './Flight';
-import { FlightGenerator } from './FlightGenerator';
+import { AirportUtils } from '../AirportUtils';
+import { Flight } from '../Flight';
+import { FlightGenerator } from '../FlightGenerator';
 
 let flightGenerator: FlightGenerator;
 

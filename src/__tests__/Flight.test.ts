@@ -1,5 +1,5 @@
-import { AirportUtils } from './AirportUtils';
-import { Flight } from './Flight';
+import { AirportUtils } from '../AirportUtils';
+import { Flight } from '../Flight';
 
 describe('getDistance', () => {
 	it('returns the correct distance between airports', () => {

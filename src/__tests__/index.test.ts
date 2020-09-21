@@ -1,5 +1,5 @@
-import { FlightGeneratorOptions } from './FlightGenerator';
-import RandomFlightGenerator from './index';
+import { FlightGeneratorOptions } from '../FlightGenerator';
+import RandomFlightGenerator from '../index';
 
 describe('RandomFlightGenerator', () => {
 	it('should take FlightGeneratorOptions and return a flight when valid', () => {
@@ -16,8 +16,8 @@ describe('RandomFlightGenerator', () => {
 			minDistance: 500,
 			maxDistance: 100,
 		};
-		const result = RandomFlightGenerator(options);
-
-		expect(result.isValid()).toBe(false);
+		expect(() => {
+			RandomFlightGenerator(options);
+		}).toThrow();
 	});
 });

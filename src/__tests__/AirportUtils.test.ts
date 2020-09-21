@@ -1,5 +1,5 @@
-import { AirportUtils } from './AirportUtils';
-import { FlightGenerator } from './FlightGenerator';
+import { AirportUtils } from '../AirportUtils';
+import { FlightGenerator } from '../FlightGenerator';
 
 describe('totalAirports', () => {
 	it('returns a number', () => {

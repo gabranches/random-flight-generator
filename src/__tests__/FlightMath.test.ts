@@ -1,5 +1,5 @@
-import { FlightMath } from './FlightMath';
-import { MapCoordinate } from './MapCoordinate';
+import { FlightMath } from '../FlightMath';
+import { MapCoordinate } from '../MapCoordinate';
 
 describe('getDistance', () => {
 	it('returns the correct distance', () => {

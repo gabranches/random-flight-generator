@@ -1,22 +1,15 @@
 import { Flight } from './Flight';
 import { FlightGenerator, FlightGeneratorOptions } from './FlightGenerator';
 
-interface FlightGeneratorError {
-	isValid: () => boolean;
-	log: () => string;
-}
-
-export = (options: FlightGeneratorOptions): Flight | FlightGeneratorError => {
+export = (options: FlightGeneratorOptions): Flight => {
 	const flightGenerator = new FlightGenerator(options);
 	const flight = flightGenerator.generateFlight();
 
 	if (flight.isValid()) {
 		return flight;
 	} else {
-		return {
-			isValid: () => false,
-			log: () =>
-				'No flights found! Check your flight configuration and try again.',
-		};
+		throw Error(
+			'No flights found! Check your flight configuration and try again.'
+		);
 	}
 };
