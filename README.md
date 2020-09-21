@@ -1,10 +1,29 @@
-### Instructions
+### Installation
 
-1. Install packages: `npm install`
-2. Configure your flight options in `src/options.ts`
-3. Run the initial build: `npm run start`
-4. If no options are changed, re-run without building: `npm run lib`
+`npm install --save random-flight-generator`
 
-### Tests
 
-1. `npm run test` or `npm run watch`
+### Example Usage
+
+```
+var flightGenerator = require("random-flight-generator");
+
+var options = { minDistance: 5, maxDistance: 100 }
+
+var flight = flightGenerator(options);
+
+flight.print(); // Logs the flight information
+```
+
+
+### Options
+
+| Option  | Type | Example |  Description |
+| ------------- | ------------- | ------------- | ------------- |
+| minDistance  | number | 5  | The minimum distance (in nautical miles) that the generated flight must have  |
+| maxDistance  | number | 100  | The maximum distance (in nautical miles) that the generated flight must have  |
+| departure  | string | 'KMIA'  | The ICAO code of the desired departure airport  |
+| arrival  | string | 'KMIA'  | The ICAO code of the desired arrival airport  |
+| includeCountries  | string[ ] | ['US', 'BR']  | Restrict results to only these countries |
+| excludeCountries  | string[ ] | ['US', 'BR']  | Restrict results to all countries except these |
+| majorAirportsOnly  | boolean | true  | (Recommended) Restrict results to only major airports with IATA codes |
