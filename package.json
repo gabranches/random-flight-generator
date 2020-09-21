@@ -1,18 +1,23 @@
 {
-	"name": "ts-boilerplate",
+	"name": "random-flight-simulator",
 	"version": "1.0.0",
-	"description": "",
-	"main": "bin/index.js",
+	"description": "A tool for generating random flights.",
+	"main": "lib/index.js",
 	"scripts": {
-		"start": "eslint . --ext .ts && tsc && node bin/index.js",
+		"start": "eslint . --ext .ts && tsc && node lib/index.js",
 		"build": "tsc",
-		"bin": "node bin/index.js",
+		"lib": "node lib/index.js",
 		"test": "tsc && jest",
 		"watch": "jest --watchAll",
-		"generateJson": "node ./bin/scripts/generateAirports.js",
-		"lint": "eslint . --ext .ts"
+		"generateJson": "node ./lib/scripts/generateAirports.js",
+		"lint": "eslint . --ext .ts",
+		"prepare": "npm run build",
+		"prepublishOnly": "npm test && npm run lint",
+		"preversion": "npm run lint",
+		"version": "git add -A src",
+		"postversion": "git push && git push --tags"
 	},
-	"author": "",
+	"author": "Gustavo Abranches",
 	"license": "ISC",
 	"devDependencies": {
 		"@types/jest": "^26.0.14",
@@ -22,10 +27,18 @@
 		"@typescript-eslint/parser": "^4.1.1",
 		"axios": "^0.19.2",
 		"eslint": "^7.9.0",
-		"jest": "^26.4.2"
-	},
-	"dependencies": {
-		"lodash": "^4.17.20",
+		"jest": "^26.4.2",
 		"typescript": "^4.0.3"
-	}
+	},
+	"files": [
+		"lib/**/*"
+	],
+	"dependencies": {
+		"lodash": "^4.17.20"
+	},
+	"keywords": [
+		"Random",
+		"Flight",
+		"Simulator"
+	]
 }

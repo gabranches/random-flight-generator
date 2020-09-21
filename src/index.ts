@@ -1,13 +1,16 @@
-import { FlightGenerator } from './FlightGenerator';
-import { options } from './options';
+import { FlightGenerator, FlightGeneratorOptions } from './FlightGenerator';
 
-const flightGenerator = new FlightGenerator(options);
-const flight = flightGenerator.generateFlight();
+export const RandomFlightGenerator = (options: FlightGeneratorOptions) => {
+	const flightGenerator = new FlightGenerator(options);
+	const flight = flightGenerator.generateFlight();
 
-if (flight.isValid()) {
-	flight.print();
-} else {
-	console.log(
-		'No flights found! Check your flight configuration and try again.'
-	);
-}
+	if (flight.isValid()) {
+		return flight;
+	} else {
+		return {
+			isValid: () => false,
+			log: () =>
+				'No flights found! Check your flight configuration and try again.',
+		};
+	}
+};

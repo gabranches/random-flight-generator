@@ -59,9 +59,6 @@ export class FlightGenerator {
 		if (departure === arrival) {
 			// If departure and arrival are the same, no valid flights were found
 			this.tries++;
-			console.log(
-				`No flights found. Trying again. Attempts: ${this.tries}`
-			);
 			if (this.tries < this.maxTries) {
 				return this.generateFlight();
 			}
