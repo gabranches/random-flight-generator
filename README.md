@@ -5,11 +5,25 @@
 
 ### Example Usage
 
+#### JS
 ```
 var flightGenerator = require("random-flight-generator");
 
 var options = { minDistance: 5, maxDistance: 100 }
 var flight = flightGenerator(options);
+
+console.log(flight.departure);
+console.log(flight.arrival);
+
+flight.print(); // Logs all the flight information
+```
+
+#### TS
+```
+import flightGenerator from "random-flight-generator";
+
+const options = { minDistance: 5, maxDistance: 100 }
+const flight = flightGenerator(options);
 
 console.log(flight.departure);
 console.log(flight.arrival);
