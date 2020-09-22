@@ -1,6 +1,6 @@
 {
 	"name": "random-flight-generator",
-	"version": "1.0.12",
+	"version": "1.0.13",
 	"description": "A tool for generating random flights.",
 	"main": "lib/index.js",
 	"types": "lib/index.d.ts",
