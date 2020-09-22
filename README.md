@@ -47,4 +47,4 @@ flight.print(); // Logs all the flight information
 ### API
 ```https://us-central1-flight-generator.cloudfunctions.net/flightGenerator```
 
-Receives all options above as params. For `includeCountries` and `excludeCountries`, use a string instead of an array. E.g. `US,BR,IT`
+Receives all options above as params. For `includeCountries` and `excludeCountries`, use a string instead of an array. E.g. `'US,BR,IT'`
