@@ -8,7 +8,7 @@
 		"start": "eslint . --ext .ts && tsc && node lib/index.js",
 		"build": "rm -rf lib/ && tsc",
 		"lib": "node lib/index.js",
-		"test": "jest",
+		"test": "npm run build && jest",
 		"watch": "jest --watchAll",
 		"generateJson": "node ./lib/scripts/generateAirports.js",
 		"lint": "eslint . --ext .ts",

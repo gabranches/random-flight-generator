@@ -29,3 +29,11 @@ describe('isValid', () => {
 		expect(flight.isValid()).toBe(false);
 	});
 });
+describe('getElevationChange', () => {
+	it('should return a positive number when flying up', () => {
+		const departure = AirportUtils.getAirport('KMIA');
+		const arrival = AirportUtils.getAirport('KDEN');
+		const flight = new Flight(departure, arrival);
+		expect(flight.getElevationChange()).toBeGreaterThan(0);
+	});
+});

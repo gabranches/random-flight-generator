@@ -58,7 +58,7 @@ export class AirportUtils {
 	): Airport[] {
 		const results: Airport[] = [];
 		const minDistance = flightGenerator.options.minDistance || 0;
-		const maxDistance = flightGenerator.options.maxDistance || 9999;
+		const maxDistance = flightGenerator.options.maxDistance || 7500;
 
 		flightGenerator.airports.forEach((airport) => {
 			const flight = new Flight(target, airport);

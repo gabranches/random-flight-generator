@@ -9,6 +9,7 @@ export interface FlightJson {
 	bearing: number;
 	distance: number;
 	isValid: boolean;
+	elevationChange: number;
 }
 
 export class Flight {
@@ -45,6 +46,10 @@ export class Flight {
 		);
 	}
 
+	public getElevationChange(): number {
+		return this.arrival.elevation - this.departure.elevation;
+	}
+
 	public toJson(): FlightJson {
 		return {
 			departure: this.departure.toJson(),
@@ -52,6 +57,7 @@ export class Flight {
 			bearing: this.getBearing(),
 			distance: this.getDistance(),
 			isValid: this.isValid(),
+			elevationChange: this.getElevationChange(),
 		};
 	}
 
