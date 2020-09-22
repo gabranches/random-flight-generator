@@ -9,7 +9,17 @@ describe('RandomFlightGenerator', () => {
 		};
 		const result = RandomFlightGenerator(options);
 
-		expect(result.isValid()).toBe(true);
+		expect(result.isValid).toBe(true);
+	});
+	it('should take FlightGeneratorOptions and return a flight when valid', () => {
+		const options: FlightGeneratorOptions = {
+			minDistance: 5,
+			maxDistance: 100,
+			includeCountries: ['BR'],
+		};
+		const result = RandomFlightGenerator(options);
+
+		expect(result.departure.country).toBe('Brazil');
 	});
 	it('should take FlightGeneratorOptions and return an erro when invalid', () => {
 		const options: FlightGeneratorOptions = {

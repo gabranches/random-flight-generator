@@ -3,7 +3,7 @@ import { AirportJson } from './AirportUtils';
 import { FlightMath } from './FlightMath';
 import { MapCoordinate } from './MapCoordinate';
 
-interface FlightJson {
+export interface FlightJson {
 	departure: AirportJson;
 	arrival: AirportJson;
 	bearing: number;
