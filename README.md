@@ -43,3 +43,8 @@ flight.print(); // Logs all the flight information
 | includeCountries  | string[ ] | ['US', 'BR']  | Restrict results to only these countries |
 | excludeCountries  | string[ ] | ['US', 'BR']  | Restrict results to all countries except these |
 | majorAirportsOnly  | boolean | true  | (Recommended) Restrict results to only major airports with IATA codes |
+
+### API
+```https://us-central1-flight-generator.cloudfunctions.net/flightGenerator```
+
+Receives all options above as params. For `includeCountries` and `excludeCountries`, use a string instead of an array. E.g. `US,BR,IT`
