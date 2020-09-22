@@ -14,6 +14,7 @@ export interface AirportJson {
 	state: string;
 	city: string;
 	elevation: number;
+	randomlyGenerated?: boolean;
 }
 
 const AIRPORTS: Airport[] = _.filter(

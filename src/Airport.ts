@@ -70,6 +70,21 @@ export class Airport {
 		);
 	}
 
+	public toJson(): AirportJson {
+		return {
+			icao: this.icao,
+			iata: this.iata,
+			lat: this.lat,
+			lon: this.lon,
+			name: this.name,
+			country: this.getCountryName(),
+			state: this.getState(),
+			city: this.city,
+			elevation: this.elevation,
+			randomlyGenerated: this.randomlyGenerated,
+		};
+	}
+
 	public print(): void {
 		console.log(`Name: ${this.name}`);
 		console.log(`ICAO: ${this.icao}`);
