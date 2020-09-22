@@ -7,7 +7,7 @@ describe('RandomFlightGenerator', () => {
 			minDistance: 5,
 			maxDistance: 100,
 		};
-		const result = RandomFlightGenerator(options);
+		const result = RandomFlightGenerator(options).toJson();
 
 		expect(result.isValid).toBe(true);
 	});
@@ -17,7 +17,7 @@ describe('RandomFlightGenerator', () => {
 			maxDistance: 100,
 			includeCountries: ['BR'],
 		};
-		const result = RandomFlightGenerator(options);
+		const result = RandomFlightGenerator(options).toJson();
 
 		expect(result.departure.country).toBe('Brazil');
 	});
