@@ -26,8 +26,12 @@ describe('randomAirport', () => {
 });
 
 describe('getAirport', () => {
-	it('returns the correct airport', () => {
+	it('returns the correct airport given an ICAO code', () => {
 		const airport = AirportUtils.getAirport('SDYM');
 		expect(airport.name).toBe('Limeira Airport');
+	});
+	it('returns the correct airport given an IATA code', () => {
+		const airport = AirportUtils.getAirport('MIA');
+		expect(airport.name).toBe('Miami International Airport');
 	});
 });

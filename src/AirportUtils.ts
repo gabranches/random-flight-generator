@@ -42,10 +42,16 @@ export class AirportUtils {
 		return AIRPORTS.length;
 	}
 
-	public static getAirport(icao: string): Airport {
-		const airport = _.find(AIRPORTS, (airport) => {
-			return airport.icao.toLowerCase() == icao.toLowerCase();
+	public static getAirport(query: string): Airport {
+		let airport = _.find(AIRPORTS, (airport) => {
+			return airport.icao.toLowerCase() == query.toLowerCase();
 		});
+		if (!airport) {
+			airport = _.find(AIRPORTS, (airport) => {
+				if (!airport.iata) return false;
+				return airport.iata.toLowerCase() == query.toLowerCase();
+			});
+		}
 		if (!airport) {
 			throw Error('Airport not found.');
 		}
