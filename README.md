@@ -45,6 +45,6 @@ flight.print(); // Logs all the flight information
 | majorAirportsOnly  | boolean | true  | (Recommended) Restrict results to only major airports with IATA codes |
 
 ### API
-```https://us-central1-flight-generator.cloudfunctions.net/flightGenerator```
+```https://us-central1-gabcore.cloudfunctions.net/flightGenerator```
 
 Receives all options above as params. For `includeCountries` and `excludeCountries`, use a string instead of an array. E.g. `'US,BR,IT'`
